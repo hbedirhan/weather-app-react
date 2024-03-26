@@ -4,7 +4,7 @@ import { useSearchContext } from '../context/SearchContext';
 function Weather() {
 
     const { weather } = useSearchContext();
-    const date = new Date(weather.list[0].dt * 1000)
+    const date = new Date(weather.list[0].dt_txt)
 
     const getTimeOfDay = (weatherData) => { 
         const pod = weatherData.sys.pod;
@@ -104,12 +104,11 @@ function Weather() {
             <div className='bg-[#16161F] p-5 rounded-lg mt-2 flex gap-2 text-center'>
                 {weather.list.map((data, index) => {
                     if (index % 8 === 0) {
-                        const unixTimestamp = data.dt * 1000;
-                        const date = new Date(unixTimestamp);
+                        const date = new Date(data.dt_txt);
                         const day = date.toLocaleDateString('en-US', { weekday: 'short' });
 
                         return (
-                            <div key={index}>
+                            <div key={index} className='w-full'>
                                 <h3 className='h-1/6 text-[#BFBFD4]'>{day}</h3>
                                 <img className='h-3/6 object-contain' src={`/icons/${data.weather[0].icon}.png`} alt="" />
                                 <p className='h-1/6 text-[#FAFAFA]'>{Math.round(data.main.temp_max)}</p>

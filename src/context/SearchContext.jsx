@@ -26,7 +26,8 @@ export const SearchProvider = ({ children }) => {
     if (coord) {
       try {
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${coord.lat}&lon=${coord.lon}&appid=07fd0fd52bd05a4cae2bc51b1bcaaadb&units=metric`)
-        setWeather(response.data)
+        setWeather(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error('Error fetching suggestions:', error);
       }
