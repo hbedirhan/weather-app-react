@@ -20,7 +20,7 @@ function Weather() {
     return (
         <div className='p-6 gap-6 w-96'>
             <div className='bg-[#16161F] p-2 rounded-lg'>
-                <div style={{ backgroundImage: `url('/public/backgrounds/Weather=${weather.list[0].weather[0].main}, Moment=${getTimeOfDay(weather.list[0])}.png')` }} className='bg-auto bg-no-repeat flex justify-between flex-col text-[#FAFAFA] w-80 h-80 p-6 rounded-lg'>
+                <div style={{ backgroundImage: `url('/backgrounds/Weather=${weather.list[0].weather[0].main}, Moment=${getTimeOfDay(weather.list[0])}.png')` }} className='bg-auto bg-no-repeat flex justify-between flex-col text-[#FAFAFA] w-80 h-80 p-6 rounded-lg'>
                     <div className=''>
                         <h2 className='font-bold text-lg'>{weather.city.name}, {weather.city.country}</h2>
                         <p className='font-light'>{date.toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
@@ -111,7 +111,7 @@ function Weather() {
                         return (
                             <div key={index}>
                                 <h3 className='h-1/6 text-[#BFBFD4]'>{day}</h3>
-                                <img className='h-3/6 object-contain' src={`/public/icons/${data.weather[0].icon}.png`} alt="" />
+                                <img className='h-3/6 object-contain' src={`/icons/${data.weather[0].icon}.png`} alt="" />
                                 <p className='h-1/6 text-[#FAFAFA]'>{Math.round(data.main.temp_max)}</p>
                                 <p className='h-1/6 text-[#7F7F98]'>{Math.round(data.main.temp_min)}</p>
                             </div>
