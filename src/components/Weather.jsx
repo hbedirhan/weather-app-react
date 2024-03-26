@@ -33,7 +33,7 @@ function Weather() {
                             <p className='font-light'>{weather.list[0].weather[0].main}</p>
                         </div>
                         <div className='w-1/3'>
-                            <img className='object-contain' src={`/src/assets/icons/${weather.list[0].weather[0].icon}.png`} alt="" />
+                            <img className='object-contain' src={`/icons/${weather.list[0].weather[0].icon}.png`} alt="" />
                         </div>
                     </div>
                 </div>
