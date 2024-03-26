@@ -6,40 +6,39 @@ function Weather() {
     const { weather } = useSearchContext();
     const date = new Date(weather.list[0].dt * 1000)
 
-    const getTimeOfDay = (weatherData) => {
-        const now = new Date();
+    const getTimeOfDay = (weatherData) => { 
+        const pod = weatherData.sys.pod;
 
-        const sunriseTime = new Date(weatherData.sys.sunrise * 1000);
-        const sunsetTime = new Date(weatherData.sys.sunset * 1000);
-
-        if (now > sunriseTime && now < sunsetTime) {
+        if (pod == 'd') {
             return "Day";
         } else {
             return "Night";
         }
     };
 
-    return (
-        <div className='p-6 gap-6'>
-            <div style={{ backgroundImage: `url('/src/assets/backgrounds/Weather=${weather.list[0].weather[0].main}, Moment=${getTimeOfDay(weather.list[0])}.png')` }} className='bg-auto bg-no-repeat flex justify-between flex-col text-[#FAFAFA] w-80 h-80 p-6 rounded-md'>
-                
-                <div className=''>
-                    <h2 className='font-bold text-lg'>{weather.city.name}, {weather.city.country}</h2>
-                    <p className='font-light'>{date.toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
 
-                </div>
-                <div className='flex justify-between'>
-                    <div>
-                        <h2 className='text-6xl font-bold'>{Math.round(weather.list[0].main.temp)}°c</h2>
-                        <h4 className='font-semibold'>{Math.round(weather.list[0].main.temp_min)}°c / {Math.round(weather.list[0].main.temp_max)}°c</h4>
-                        <p className='font-light'>{weather.list[0].weather[0].main}</p>
+    return (
+        <div className='p-6 gap-6 w-96'>
+            <div className='bg-[#16161F] p-2 rounded-lg'>
+                <div style={{ backgroundImage: `url('/public/backgrounds/Weather=${weather.list[0].weather[0].main}, Moment=${getTimeOfDay(weather.list[0])}.png')` }} className='bg-auto bg-no-repeat flex justify-between flex-col text-[#FAFAFA] w-80 h-80 p-6 rounded-lg'>
+                    <div className=''>
+                        <h2 className='font-bold text-lg'>{weather.city.name}, {weather.city.country}</h2>
+                        <p className='font-light'>{date.toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
                     </div>
-                    <div className='w-1/3'>
-                        <img className='object-contain' src={`/src/assets/icons/${weather.list[0].weather[0].icon}.png`} alt="" />
+                    <div className='flex justify-between'>
+                        <div>
+                            <h2 className='text-6xl font-bold'>{Math.round(weather.list[0].main.temp)}°c</h2>
+                            <h4 className='font-semibold'>{Math.round(weather.list[0].main.temp_min)}°c / {Math.round(weather.list[0].main.temp_max)}°c</h4>
+                            <p className='font-light'>{weather.list[0].weather[0].main}</p>
+                        </div>
+                        <div className='w-1/3'>
+                            <img className='object-contain' src={`/src/assets/icons/${weather.list[0].weather[0].icon}.png`} alt="" />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className='bg-[#16161F] p-5 rounded-md mt-2'>
+            <div className='bg-[#16161F] p-5 rounded-lg mt-2'>
                 <ul className='flex flex-col gap-4'>
                     <li className='inline-flex gap-5 items-center justify-center'>
                         <span>
@@ -102,7 +101,7 @@ function Weather() {
                     </li>
                 </ul>
             </div>
-            <div className='bg-[#16161F] p-5 rounded-md mt-2 flex gap-2 w-80 text-center'>
+            <div className='bg-[#16161F] p-5 rounded-lg mt-2 flex gap-2 text-center'>
                 {weather.list.map((data, index) => {
                     if (index % 8 === 0) {
                         const unixTimestamp = data.dt * 1000;
@@ -112,7 +111,7 @@ function Weather() {
                         return (
                             <div key={index}>
                                 <h3 className='h-1/6 text-[#BFBFD4]'>{day}</h3>
-                                <img className='h-3/6 object-contain' src={`/src/assets/icons/${data.weather[0].icon}.png`} alt="" />
+                                <img className='h-3/6 object-contain' src={`/public/icons/${data.weather[0].icon}.png`} alt="" />
                                 <p className='h-1/6 text-[#FAFAFA]'>{Math.round(data.main.temp_max)}</p>
                                 <p className='h-1/6 text-[#7F7F98]'>{Math.round(data.main.temp_min)}</p>
                             </div>
