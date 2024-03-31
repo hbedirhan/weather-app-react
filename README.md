@@ -24,6 +24,7 @@ npm run dev
 * React
 * useState
 * useEffect
+* useMemo
 * Context API
 * Axios
 * Tailwind CSS
